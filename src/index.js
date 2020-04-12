@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Board from "./components/board/board.jsx"
-import { observe, moveKnight } from "./helper/helper.js"
+import { observe} from "./helper/helper.js"
+
+
 
 
 import * as serviceWorker from './serviceWorker';
