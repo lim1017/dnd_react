@@ -1,6 +1,8 @@
 import React from 'react'
 import Knight from "../knight/knight.jsx"
 import Square from "../square/square.jsx"
+import { moveKnight, canMoveKnight } from "../../helper/helper.js"
+
 
 function renderSquare(i, [knightX, knightY]) {
   const x = i % 8
@@ -10,13 +12,25 @@ function renderSquare(i, [knightX, knightY]) {
   const piece = isKnightHere ? <Knight /> : null
 
   return (
-    <div key={i} style={{ width: '12%', height: '12%' }}>
+    <div key={i} 
+        style={{ width: '12.5%', height: '12%' }}
+        onClick={() => handleSquareClick(x, y)}
+        >
       <Square black={black}>{piece}</Square>
     </div>
   )
 }
 
+function handleSquareClick(toX, toY) {
+  if (canMoveKnight(toX, toY)) {
+    moveKnight(toX, toY)
+  }
+}
+
+
 export default function Board({ knightPosition }) {
+  
+
   const squares = []
   for (let i = 0; i < 64; i++) {
     squares.push(renderSquare(i, knightPosition))
@@ -25,10 +39,11 @@ export default function Board({ knightPosition }) {
   return (
     <div
       style={{
-        width: '100%',
-        height: '100vh',
+        width: '99%',
+        height: '99vh',
         display: 'flex',
         flexWrap: 'wrap',
+        borderStyle: 'solid'
       }}
     >
       {squares}

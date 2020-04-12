@@ -3,21 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Board from "./components/board/board.jsx"
+import { observe, moveKnight } from "./helper/helper.js"
+
 
 import * as serviceWorker from './serviceWorker';
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+
+// function observe(receive) {
+//   const randPos = () => Math.floor(Math.random() * 8)
+//   setInterval(() => receive([randPos(), randPos()]), 500)
+// }
 
 
-ReactDOM.render(
-  <Board knightPosition={[0, 0]} />,
-  document.getElementById('root'),
+
+
+
+
+
+
+
+observe(knightPosition =>
+  ReactDOM.render(<Board knightPosition={knightPosition} />,  document.getElementById('root')),
 )
+
+
+  // ReactDOM.render(<Board knightPosition={observe(knightPosition)} />,  document.getElementById('root')),
 
 
 // If you want your app to work offline and load faster, you can change
